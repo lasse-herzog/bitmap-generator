@@ -3,4 +3,6 @@ project(bitmap_generator C)
 
 set(CMAKE_C_STANDARD 23)
 
-add_executable(bitmap_generator main.c)
+add_subdirectory(test)
+
+add_executable(bitmap_generator src/main.c)
