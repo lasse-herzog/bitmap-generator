@@ -4,6 +4,18 @@
 #define RASTERGRAFIK_GENERATOR_DRAWING_UTILS_H
 
 /**
+ *
+ * @param x0
+ * @param y0
+ * @param x1
+ * @param y1
+ * @param bitmap
+ * @param rgb
+ * @return
+ */
+extern int drawLine(int x0, int y0, int x1, int y1, Bitmap *bitmap, RGB rgb);
+
+/**
  * Sets a Pixel at the specified coordinates to a certain color.
  * @param x X coordinate of the Pixel inside the Bitmap
  * @param y Y coordinate of the Pixel inside the Bitmap
