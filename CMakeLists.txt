@@ -13,3 +13,4 @@ add_subdirectory(src/bitmap_generator_lib)
 add_executable(bitmap_generator ${SOURCE_FILES})
 
 target_link_libraries(bitmap_generator bitmap_generator_lib)
+target_link_libraries(bitmap_generator m)
