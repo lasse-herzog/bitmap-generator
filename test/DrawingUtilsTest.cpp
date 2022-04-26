@@ -40,6 +40,110 @@ class DrawingUtilsTest : public testing::Test {
   }
 };
 
+TEST_F(DrawingUtilsTest, Drawcircle) {
+  drawCircle(1, 1, 1, &bmp, white);
+
+  EXPECT_EQ(bmp.pixels[0].R, 0);
+  EXPECT_EQ(bmp.pixels[0].G, 0);
+  EXPECT_EQ(bmp.pixels[0].B, 0);
+
+  EXPECT_EQ(bmp.pixels[1].R, 255);
+  EXPECT_EQ(bmp.pixels[1].G, 255);
+  EXPECT_EQ(bmp.pixels[1].B, 255);
+
+  EXPECT_EQ(bmp.pixels[2].R, 0);
+  EXPECT_EQ(bmp.pixels[2].G, 0);
+  EXPECT_EQ(bmp.pixels[2].B, 0);
+
+  EXPECT_EQ(bmp.pixels[3].R, 255);
+  EXPECT_EQ(bmp.pixels[3].G, 255);
+  EXPECT_EQ(bmp.pixels[3].B, 255);
+
+  EXPECT_EQ(bmp.pixels[4].R, 0);
+  EXPECT_EQ(bmp.pixels[4].G, 0);
+  EXPECT_EQ(bmp.pixels[4].B, 0);
+
+  EXPECT_EQ(bmp.pixels[5].R, 255);
+  EXPECT_EQ(bmp.pixels[5].G, 255);
+  EXPECT_EQ(bmp.pixels[5].B, 255);
+
+  EXPECT_EQ(bmp.pixels[6].R, 0);
+  EXPECT_EQ(bmp.pixels[6].G, 0);
+  EXPECT_EQ(bmp.pixels[6].B, 0);
+
+  EXPECT_EQ(bmp.pixels[7].R, 255);
+  EXPECT_EQ(bmp.pixels[7].G, 255);
+  EXPECT_EQ(bmp.pixels[7].B, 255);
+
+  EXPECT_EQ(bmp.pixels[8].R, 0);
+  EXPECT_EQ(bmp.pixels[8].G, 0);
+  EXPECT_EQ(bmp.pixels[8].B, 0);
+}
+
+TEST_F(DrawingUtilsTest, DrawCircleBig) {
+  bmp = {
+      .width = 5,
+      .height = 5,
+      .pixels = new RGB[25],
+  };
+
+  for (int x = 0; x < bmp.width; ++x) {
+    for (int y = 0; y < bmp.height; ++y) {
+      setPixel(x, y, &bmp, black);
+    }
+  }
+
+  drawCircle(2, 2, 2, &bmp, white);
+
+  for (int i = 0; i < bmp.width * bmp.height; ++i) {
+    switch (i) {
+      case 1:
+      case 2:
+      case 3:
+      case 5:
+      case 9:
+      case 10:
+      case 14:
+      case 15:
+      case 19:
+      case 21:
+      case 22:
+      case 23:
+        EXPECT_EQ(bmp.pixels[i].R, 255);
+        EXPECT_EQ(bmp.pixels[i].G, 255);
+        EXPECT_EQ(bmp.pixels[i].B, 255);
+        break;
+      default:
+        EXPECT_EQ(bmp.pixels[i].R, 0);
+        EXPECT_EQ(bmp.pixels[i].G, 0);
+        EXPECT_EQ(bmp.pixels[i].B, 0);
+        break;
+    }
+  }
+}
+
+TEST_F(DrawingUtilsTest, DrawCircleOutOfBounds) {
+  drawCircle(0, 2, 2, &bmp, white);
+
+  for (int i = 0; i < bmp.width * bmp.height; ++i) {
+    switch (i) {
+      case 0:
+      case 1:
+      case 5:
+      case 8:
+        EXPECT_EQ(bmp.pixels[i].R, 255);
+        EXPECT_EQ(bmp.pixels[i].G, 255);
+        EXPECT_EQ(bmp.pixels[i].B, 255);
+        break;
+      default:
+        EXPECT_EQ(bmp.pixels[i].R, 0);
+        EXPECT_EQ(bmp.pixels[i].G, 0);
+        EXPECT_EQ(bmp.pixels[i].B, 0);
+        break;
+    }
+  }
+}
+
 TEST_F(DrawingUtilsTest, DrawLineLowDown) {
   drawLine(0, 0, 2, 1, &bmp, white);
 
@@ -243,11 +347,23 @@ TEST_F(DrawingUtilsTest, DrawLineDiagonal) {
 TEST_F(DrawingUtilsTest, DrawLineOutOfBounds) {
   int result = drawLine(-1, -1, 0, 0, &bmp, white);
 
-  EXPECT_EQ(result, 1);
+  EXPECT_EQ(bmp.pixels[0].R, 255);
+  EXPECT_EQ(bmp.pixels[0].G, 255);
+  EXPECT_EQ(bmp.pixels[0].B, 255);
 
   result = drawLine(0, 0, 3, 3, &bmp, white);
 
-  EXPECT_EQ(result, 1);
+  EXPECT_EQ(bmp.pixels[0].R, 255);
+  EXPECT_EQ(bmp.pixels[0].G, 255);
+  EXPECT_EQ(bmp.pixels[0].B, 255);
+
+  EXPECT_EQ(bmp.pixels[4].R, 255);
+  EXPECT_EQ(bmp.pixels[4].G, 255);
+  EXPECT_EQ(bmp.pixels[4].B, 255);
+
+  EXPECT_EQ(bmp.pixels[8].R, 255);
+  EXPECT_EQ(bmp.pixels[8].G, 255);
+  EXPECT_EQ(bmp.pixels[8].B, 255);
 }
 
 TEST_F(DrawingUtilsTest, SetPixel) {
