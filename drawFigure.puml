@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+group drawFigure(int height, int width, int n)
+start
+
+if (height != width) then (true)
+  stop
+else (false)
+  :double alpha = PI / (2n);
+  :int a = height;
+  :int r  = a - 1;
+  :drawCircle(0, r, r);
+  :int i = 0;
+
+  repeat
+  :x = sin(alpha * i) * a;
+  :y = (1 - cos(alpha * i)) * a;
+  :drawLine(0, r, x, y, bmp, rgb);
+  :drawLine(x, y, r, 0, bmp, rgb);
+  repeat while (i < n) is (true) not (false)
+endif
+
+stop
+@enduml
