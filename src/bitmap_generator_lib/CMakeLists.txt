@@ -1,13 +1,15 @@
 project(bitmap_generator_lib)
 
 set(HEADER_FILES
-    utils.h
     drawing_utils.h
+    figures.h
     printing_utils.h
+    utils.h
     )
 
 set(SOURCE_FILES
     drawing_utils.c
+    figures.c
     printing_utils.c
     )
 
