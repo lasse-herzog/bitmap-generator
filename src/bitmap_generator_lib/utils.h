@@ -4,7 +4,7 @@
 #define BLUE (RGB) {0,0,255}
 #define GREEN (RGB) {0,255,0}
 #define RED (RGB) {255,0,0}
-#define WHITE (RGB) {255,0,0}
+#define WHITE (RGB) {255,255,255}
 
 /**
  * A struct representing a RGB value. Contains a Byte for each of the 3 additive
