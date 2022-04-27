@@ -15,8 +15,8 @@ else (false)
   repeat
   :int x = sin(alpha * i) * a;
   :int y = (1 - cos(alpha * i)) * a;
-  :drawLine(0, r, x, y, bmp, rgb);
-  :drawLine(x, y, r, 0, bmp, rgb);
+  :drawLine(0, r, x, y);
+  :drawLine(x, y, r, 0);
   repeat while (i < n) is (true) not (false)
 endif
 
