@@ -4,7 +4,7 @@
 #define BITMAP_GENERATOR_SRC_BITMAP_GENERATOR_LIB_FIGURES_H_
 
 /**
- * Draws the picture shown in figure#01 to the Bitmap.
+ * Draws the picture shown in figure_01 to the Bitmap.
  * ! Does not clear the Bitmap before drawing.
  * @param bmp The Bitmap struct in which the figure will be drawn.
  * @param n The number of points on the circle.
